@@ -74,49 +74,30 @@ function questionGen(num){
         </div>
     </article>
     `;
-    document.getElementById("answerA").onclick = function(){
-        userAnswers.push("A");
-        console.log(`answerA`)
-        countdown++
-        if (countdown == quizQ.length){ startPage() }
-            else if (countdown < quizQ.length) {
-        questionGen(countdown)
-            }
-    };
-    document.getElementById("answerB").onclick = function(){
-        userAnswers.push("B");
-        console.log(`answerB`)
-        countdown++
-        if (countdown == quizQ.length){ startPage() }
-        else if (countdown < quizQ.length) {
-        questionGen(countdown)
-        }
-    };
-    document.getElementById("answerC").onclick = function(){
-        userAnswers.push("C");
-        console.log(`answerC`)
-        countdown++
-        if (countdown == quizQ.length){ startPage() }
-            else if (countdown < quizQ.length) {
-        questionGen(countdown)
-        }
-    };
-    document.getElementById("answerD").onclick = function(){
-        userAnswers.push("D");
-        console.log(`answerD`)
-        countdown++
-        if (countdown == quizQ.length){ startPage() }
-            else if (countdown < quizQ.length) {
-        questionGen(countdown)
-        }
-    };
+    document.getElementById("answerA").onclick = function(){answerClick('A')}
+    document.getElementById("answerB").onclick = function(){answerClick('B')}
+    document.getElementById("answerC").onclick = function(){answerClick('C')}
+    document.getElementById("answerD").onclick = function(){answerClick('D')}
+}
+
+function answerClick(letter){
+    userAnswers.push(letter);
+    if( userAnswers[countdown] == quizQ[countdown].rightAns ) {
+        correctAns++
+    }       
+    console.log(`Answered`)
+    countdown++
+    if (countdown == quizQ.length){ scorePage() }
+    else if (countdown < quizQ.length) {
+    questionGen(countdown)
+    }
 }
 
 function startPage() {
     userAnswers = []
     correctAns = 0
     countdown = 0
-    
+
     qSheet.innerHTML = 
     `
     <article>
@@ -135,22 +116,14 @@ function quizStart(){
 }
 
 function scorePage() {
-    for ( var idx = 0 ; idx < quizQ.length ; idx++ ){
-        if( userAnswers[idx] == quizQ[idx].rightAns ) {
-            correctAns++
-        }       
-    }
-
+    qSheet.innerHTML = 
+    `
+    <article>
+        <h3>Done !!!</h3>
+        <p>You got <span style="font-weight:bold">${correctAns}</span> out of <span style="font-weight:bold">${quizQ.length}</span> correct with a score of <span style="font-weight:bold">${correctAns}</span></p>
+        <button id="start" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Start Quiz</button>
+    </article> 
+    `
 }
 
-
 document.getElementById("start").addEventListener("click", quizStart);
-
-
-
-
-
-
-
-
-
