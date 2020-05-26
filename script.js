@@ -1,7 +1,7 @@
 // Quiz Questions Array
 var quizQ = [
     {   question: '1. The basic difference between JavaScript and Java is ________', 
-        ansA: 'There is no difference',
+        ansA: 'A - There is no difference',
         ansB: 'B - Functions are considered as fields',
         ansC: 'C - Variables are specific',
         ansD: 'D - Functions are values, and there is no hard distinction',
@@ -42,6 +42,7 @@ var quizQ = [
 var qSheet = document.querySelector('#questions')
 var userAnswers = []
 var correctAns = 0
+var countdown = 0
 
 function questionGen(num){
     var question = quizQ[num].question;
@@ -73,41 +74,68 @@ function questionGen(num){
         </div>
     </article>
     `;
-    
-    document.getElementById("answerA").onclick = function(){userAnswers.push("A");
-    console.log(`answerA`)
+    document.getElementById("answerA").onclick = function(){
+        userAnswers.push("A");
+        console.log(`answerA`)
+        countdown++
+        if (countdown == quizQ.length){ startPage() }
+            else if (countdown < quizQ.length) {
+        questionGen(countdown)
+            }
     };
-    document.getElementById("answerB").onclick = function(){userAnswers.push("B");
-    console.log(`answerB`)
+    document.getElementById("answerB").onclick = function(){
+        userAnswers.push("B");
+        console.log(`answerB`)
+        countdown++
+        if (countdown == quizQ.length){ startPage() }
+        else if (countdown < quizQ.length) {
+        questionGen(countdown)
+        }
     };
-    document.getElementById("answerC").onclick = function(){userAnswers.push("C");
-    console.log(`answerC`)
+    document.getElementById("answerC").onclick = function(){
+        userAnswers.push("C");
+        console.log(`answerC`)
+        countdown++
+        if (countdown == quizQ.length){ startPage() }
+            else if (countdown < quizQ.length) {
+        questionGen(countdown)
+        }
     };
-    document.getElementById("answerD").onclick = function(){userAnswers.push("D");
-    console.log(`answerD`)
+    document.getElementById("answerD").onclick = function(){
+        userAnswers.push("D");
+        console.log(`answerD`)
+        countdown++
+        if (countdown == quizQ.length){ startPage() }
+            else if (countdown < quizQ.length) {
+        questionGen(countdown)
+        }
     };
-
-    return userAnswers
 }
 
 function startPage() {
+    userAnswers = []
+    correctAns = 0
+    countdown = 0
+    
     qSheet.innerHTML = 
     `
-    <section class="container text-center" style="max-width: 480px">
-        <article>
-            <h3>Vad är Lorem Ipsum?</h3>
-            <p>
-            Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
-            </p>
-            <button id="start" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Start Quiz</button>
-        </article> 
-    </section>
+    <article>
+        <h3>Vad är Lorem Ipsum?</h3>
+        <p>
+        Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
+        </p>
+        <button id="start" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Start Quiz</button>
+    </article> 
     `
+    document.getElementById("start").addEventListener("click", quizStart);
 }
 
 function quizStart(){    
+    questionGen(countdown)
+}
+
+function scorePage() {
     for ( var idx = 0 ; idx < quizQ.length ; idx++ ){
-        questionGen(idx)
         if( userAnswers[idx] == quizQ[idx].rightAns ) {
             correctAns++
         }       
@@ -116,8 +144,9 @@ function quizStart(){
 }
 
 
-
 document.getElementById("start").addEventListener("click", quizStart);
+
+
 
 
 
