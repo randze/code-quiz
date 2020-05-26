@@ -1,0 +1,45 @@
+body {
+    background-color: #ffffe0;
+}
+header nav {
+    background-color: #323b44;
+    height: 70px;
+    padding-top: 10px;
+    border-bottom: 5px solid #9b7ada ;
+    padding-bottom: 5px;
+    color: white;
+}
+
+footer {
+    background-color: #323b44;
+    height: 45px;
+    border-top: 5px solid #9b7ada ;
+    padding-top: 5px;
+}
+
+section {
+    background-color: white;
+    margin: 1rem;
+    border: 3px solid gray;
+    border-radius: 5%;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+form {
+    background-color: white;
+    margin: 1rem;
+    border: 3px solid gray;
+    border-radius: 5%;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.h1 {
+    font-size: 2rem;
+}
+
