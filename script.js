@@ -39,17 +39,22 @@ var quizQ = [
         // ansD: 'D - ',
         // rightAns: '' }
 
-for ( var idx = 0 ; idx < quizQ.length ; idx++ ){
-    var question = quizQ[idx].question;
-    var ansA = quizQ[idx].ansA;
-    var ansB = quizQ[idx].ansB;
-    var ansC = quizQ[idx].ansC;
-    var ansD = quizQ[idx].ansD;
-    var rightAns = quizQ[idx].rightAns;
+var qSheet = document.querySelector('#questions')
+var userAnswers = []
+var correctAns = 0
 
-    document.querySelector('#questions').innerHTML += 
+function questionGen(num){
+    var question = quizQ[num].question;
+    var ansA = quizQ[num].ansA;
+    var ansB = quizQ[num].ansB;
+    var ansC = quizQ[num].ansC;
+    var ansD = quizQ[num].ansD;
+    var rightAns = quizQ[num].rightAns;
+
+    
+    qSheet.innerHTML = 
     `
-    <article class='question${idx}'>
+    <article class='question${num}'>
         <h4>${question}</h3>
         <hr/>
         <div class="row align-items-center">
@@ -68,4 +73,55 @@ for ( var idx = 0 ; idx < quizQ.length ; idx++ ){
         </div>
     </article>
     `;
+    
+    document.getElementById("answerA").onclick = function(){userAnswers.push("A");
+    console.log(`answerA`)
+    };
+    document.getElementById("answerB").onclick = function(){userAnswers.push("B");
+    console.log(`answerB`)
+    };
+    document.getElementById("answerC").onclick = function(){userAnswers.push("C");
+    console.log(`answerC`)
+    };
+    document.getElementById("answerD").onclick = function(){userAnswers.push("D");
+    console.log(`answerD`)
+    };
+
+    return userAnswers
 }
+
+function startPage() {
+    qSheet.innerHTML = 
+    `
+    <section class="container text-center" style="max-width: 480px">
+        <article>
+            <h3>Vad är Lorem Ipsum?</h3>
+            <p>
+            Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
+            </p>
+            <button id="start" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Start Quiz</button>
+        </article> 
+    </section>
+    `
+}
+
+function quizStart(){    
+    for ( var idx = 0 ; idx < quizQ.length ; idx++ ){
+        questionGen(idx)
+        if( userAnswers[idx] == quizQ[idx].rightAns ) {
+            correctAns++
+        }       
+    }
+
+}
+
+
+
+document.getElementById("start").addEventListener("click", quizStart);
+
+
+
+
+
+
+
