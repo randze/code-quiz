@@ -29,12 +29,12 @@ section {
 }
 
 aside {
-    color: #fff;
+    position: absolute;
+    top: 50px;
+    right: 0;
     font-weight: bolder;
     font-size: 1.5rem;
-    background-color: #46535f;
     margin: 1rem;
-    border: 3px solid gray;
 }
 
 .h1 {

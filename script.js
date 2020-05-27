@@ -125,7 +125,7 @@ function quizStart(){
     score = 75;
     scoreTimer = setInterval(function() {
         score--
-        document.getElementById("timer").innerHTML = `<p>${score}</p>`;
+        document.getElementById("timer").innerHTML = `<p>Score: ${score}</p>`;
     
         if(score === 0) {
           scorePage()
@@ -141,17 +141,43 @@ function scorePage() {
     `
     <article>
         <h3>Done !!!</h3>
-        <p>You got <span style="font-weight:bold">${correctAns}</span> out of <span style="font-weight:bold">${quizQ.length}</span> correct with a score of <span style="font-weight:bold">${score}</span></p>
+        <p>You got <span style="font-weight:bold">${correctAns}</span> out of <span style="font-weight:bold">${quizQ.length}</span> correct with a score of <span style="font-weight:bold">${score} !</span></p>
         <br>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Initials" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input id="name" type="text" class="form-control" placeholder="Initials" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button"style="background-color: rgb(149, 95, 173);color: white;">Submit</button>
+                <button id="storeScore" class="btn btn-outline-secondary" type="button"style="background-color: rgb(149, 95, 173);color: white;">Submit</button>
             </div>
         </div>
     </article> 
     `
     clearInterval(scoreTimer)
+
+    document.getElementById("name").focus();
+    document.getElementById("storeScore").addEventListener("click", function(){
+        var name = document.getElementById("name").value
+        localStorage.setItem('theScore', name + " - " + score);
+        scoreboard()
+    });
+}
+
+// Generate Scoreboard Page
+function scoreboard(){
+    var scoreboardList = localStorage.getItem('theScore')
+    qSheet.innerHTML = 
+    `
+    <article>
+        <h3>Scoreboard</h3>
+        <hr/>
+        <ol class="list-group">
+            <li class="list-group-item list-group-item-warning">${scoreboardList}</li>
+        </ol>
+        <hr/>
+    </article> 
+    `
+    // for ( idx=0 ; idx<localStorage.length ; idx++ ){
+    //     var scoreList = localStorage.getItem('');
+    // }
 }
 
 // First Start Button
