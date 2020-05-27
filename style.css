@@ -41,14 +41,19 @@ aside {
     font-size: 2rem;
 }
 
-.ninja {
-    display: none;
-}
-
 .top-buffer { 
     margin-top:10px; 
 }
+
 .button-box {
     text-align:center;
     /* margin-top:20px; */
  }
+
+.list-group-item {
+    font-weight: bold;
+}
+
+#scoreboardShow {
+    text-align: center;
+}

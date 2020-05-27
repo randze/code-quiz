@@ -108,13 +108,16 @@ function startPage() {
     countdown = 0
     score = 75
 
+    document.getElementById("timer").innerHTML = `<p>Score: ${score}</p>`;
     qSheet.innerHTML = 
     `
     <article>
-        <h3>Vad är Lorem Ipsum?</h3>
+        <h3>Javascript Fundamentals</h3>
+        <hr/>
         <p>
-        Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
+        A 75 second timed quiz, your time decreases whenever you get a wrong answer. <br><br>Good luck !!
         </p>
+        <br>
         <div class="button-box col-lg-12">
         <button id="start" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Start Quiz</button>
         </div>
@@ -171,9 +174,9 @@ function scoreboard(){
     <article>
         <h3>Scoreboard</h3>
         <hr/>
-        <ol id="scoreboardShow"class="list-group">
+        <ul id="scoreboardShow"class="list-group">
             
-        </ol>
+        </ul>
         <hr/>
         <div class="button-box col-lg-12">
             <button id="backToStart" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Back to Start</button>
@@ -185,7 +188,7 @@ function scoreboard(){
         function( item, index ){
             document.querySelector('#scoreboardShow').innerHTML +=
             `
-            <li id="${index}"class="list-group-item list-group-item-warning">${item}</li>
+            <li id="${index}" class="list-group-item list-group-item-warning">${item}</li>
             `
         }
     )
