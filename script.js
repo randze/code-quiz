@@ -39,7 +39,8 @@ var quizQ = [
         // ansD: 'D - ',
         // rightAns: '' }
 
-var qSheet = document.querySelector('#questions')
+let scoreboardList = localStorage.scoreboardList ? JSON.parse(localStorage.scoreboardList) : [];
+const qSheet = document.querySelector('#questions')
 var userAnswers = []
 var correctAns = 0
 var countdown = 0
@@ -156,28 +157,36 @@ function scorePage() {
     document.getElementById("name").focus();
     document.getElementById("storeScore").addEventListener("click", function(){
         var name = document.getElementById("name").value
-        localStorage.setItem('theScore', name + " - " + score);
+        scoreboardList.push(name + " - " + score)
         scoreboard()
     });
 }
 
 // Generate Scoreboard Page
 function scoreboard(){
-    var scoreboardList = localStorage.getItem('theScore')
     qSheet.innerHTML = 
     `
     <article>
         <h3>Scoreboard</h3>
         <hr/>
-        <ol class="list-group">
-            <li class="list-group-item list-group-item-warning">${scoreboardList}</li>
+        <ol id="scoreboardShow"class="list-group">
+            
         </ol>
         <hr/>
     </article> 
     `
+    scoreboardList.forEach( 
+        function( item, index ){
+            document.querySelector('#scoreboardShow').innerHTML +=
+            `
+            <li id="${index}"class="list-group-item list-group-item-warning">${item}</li>
+            `
+        }
+    )
     // for ( idx=0 ; idx<localStorage.length ; idx++ ){
     //     var scoreList = localStorage.getItem('');
     // }
+    localStorage.scoreboardList = JSON.stringify(scoreboardList);
 }
 
 // First Start Button
