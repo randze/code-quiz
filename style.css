@@ -28,6 +28,15 @@ section {
     padding-right: 5%;
 }
 
+aside {
+    color: #fff;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    background-color: #46535f;
+    margin: 1rem;
+    border: 3px solid gray;
+}
+
 .h1 {
     font-size: 2rem;
 }

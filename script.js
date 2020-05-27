@@ -43,7 +43,10 @@ var qSheet = document.querySelector('#questions')
 var userAnswers = []
 var correctAns = 0
 var countdown = 0
+var score = 0
+var scoreTimer = 0;
 
+// Generate question page
 function questionGen(num){
     var question = quizQ[num].question;
     var ansA = quizQ[num].ansA;
@@ -80,11 +83,15 @@ function questionGen(num){
     document.getElementById("answerD").onclick = function(){answerClick('D')}
 }
 
+// Function to react to question answers
 function answerClick(letter){
     userAnswers.push(letter);
     if( userAnswers[countdown] == quizQ[countdown].rightAns ) {
         correctAns++
-    }       
+    }
+    if( userAnswers[countdown] != quizQ[countdown].rightAns ) {
+        score = score-10
+    }
     console.log(`Answered`)
     countdown++
     if (countdown == quizQ.length){ scorePage() }
@@ -93,10 +100,12 @@ function answerClick(letter){
     }
 }
 
+// Start Page
 function startPage() {
     userAnswers = []
     correctAns = 0
     countdown = 0
+    score = 75
 
     qSheet.innerHTML = 
     `
@@ -111,19 +120,39 @@ function startPage() {
     document.getElementById("start").addEventListener("click", quizStart);
 }
 
-function quizStart(){    
+// Initiate quizStart timer
+function quizStart(){
+    score = 75;
+    scoreTimer = setInterval(function() {
+        score--
+        document.getElementById("timer").innerHTML = `<p>${score}</p>`;
+    
+        if(score === 0) {
+          scorePage()
+        }
+    }, 1000);
+
     questionGen(countdown)
 }
 
+// Score Page
 function scorePage() {
     qSheet.innerHTML = 
     `
     <article>
         <h3>Done !!!</h3>
-        <p>You got <span style="font-weight:bold">${correctAns}</span> out of <span style="font-weight:bold">${quizQ.length}</span> correct with a score of <span style="font-weight:bold">${correctAns}</span></p>
-        <button id="start" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Start Quiz</button>
+        <p>You got <span style="font-weight:bold">${correctAns}</span> out of <span style="font-weight:bold">${quizQ.length}</span> correct with a score of <span style="font-weight:bold">${score}</span></p>
+        <br>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Initials" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button"style="background-color: rgb(149, 95, 173);color: white;">Submit</button>
+            </div>
+        </div>
     </article> 
     `
+    clearInterval(scoreTimer)
 }
 
+// First Start Button
 document.getElementById("start").addEventListener("click", quizStart);
