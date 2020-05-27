@@ -115,7 +115,9 @@ function startPage() {
         <p>
         Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd boksättare tog att antal bokstäver och blandade dem för att göra ett provexemplar av en bok. Lorem ipsum har inte bara överlevt fem århundraden, utan även övergången till elektronisk typografi utan större förändringar. Det blev allmänt känt på 1960-talet i samband med lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare med mjukvaror som Aldus PageMaker.
         </p>
+        <div class="button-box col-lg-12">
         <button id="start" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Start Quiz</button>
+        </div>
     </article> 
     `
     document.getElementById("start").addEventListener("click", quizStart);
@@ -173,6 +175,10 @@ function scoreboard(){
             
         </ol>
         <hr/>
+        <div class="button-box col-lg-12">
+            <button id="backToStart" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Back to Start</button>
+            <button id="clearScoreboard" type="button" class="btn" style="background-color: rgb(149, 95, 173);color: white;">Clear Scoreboard</button>
+        </div>
     </article> 
     `
     scoreboardList.forEach( 
@@ -183,10 +189,20 @@ function scoreboard(){
             `
         }
     )
-    // for ( idx=0 ; idx<localStorage.length ; idx++ ){
-    //     var scoreList = localStorage.getItem('');
-    // }
+
+    // Store scoreboardlist to localstorage
     localStorage.scoreboardList = JSON.stringify(scoreboardList);
+
+    // 
+    document.querySelector("#backToStart").addEventListener("click", startPage)
+    
+    // Function to clear scoreboard
+    document.querySelector("#clearScoreboard").addEventListener("click", function(){
+        console.log('Clearing Scoreboard')
+        scoreboardList = []
+        localStorage.clear(scoreboardList)
+        scoreboard()
+    })
 }
 
 // First Start Button

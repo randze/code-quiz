@@ -48,3 +48,7 @@ aside {
 .top-buffer { 
     margin-top:10px; 
 }
+.button-box {
+    text-align:center;
+    /* margin-top:20px; */
+ }
