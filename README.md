@@ -5,7 +5,7 @@ A sample timed quiz based mainly on Javascript and Bootstrap.
 ## How it works
 - Start Quiz
 - Timer set to 75
-- Each wrong answer [ -10seconds ]
+- Each wrong answer [ -10 seconds ]
 - Scorepage that shows & saves your results
 - Clear-able Scoreboard page
 
@@ -17,3 +17,6 @@ Random Javascript questions gotten from:
 [SanFoundry.com](https://www.sanfoundry.com/1000-javascript-questions-answers/).
 
 [Bootstrap](https://getbootstrap.com/) for a more responsive page.
+
+## Link to Quiz
+[Code-Quiz](https://randze.github.io/code-quiz/)
