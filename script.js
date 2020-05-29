@@ -45,7 +45,7 @@ var userAnswers = []
 var correctAns = 0
 var countdown = 0
 var score = 0
-var scoreTimer = 0;
+var scoreTimer;
 
 // Generate question page
 function questionGen(num){
